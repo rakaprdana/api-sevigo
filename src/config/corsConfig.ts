@@ -9,18 +9,20 @@ const allowedOrigins = [
 const corsOptions: CorsOptions = {
   origin: (
     origin: string | undefined,
-    callback: (err: Error | null, allow?: boolean) => void
+    callback: (err: Error | null, allow?: boolean) => void,
   ) => {
     // Jika origin tidak ada (misalnya request dari tools seperti Postman) atau termasuk dalam allowedOrigins
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(
-        new Error(`CORS error: Origin ${origin} is not allowed by CORS policy`)
+        new Error(`CORS error: Origin ${origin} is not allowed by CORS policy`),
       );
     }
   },
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["Authorization"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
