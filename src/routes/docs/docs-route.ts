@@ -1,8 +1,8 @@
 import swaggerJsDoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
 import userPaths from "./user-paths";
-import categoryPaths from './category-paths'
-import complaintPaths from './complaint-paths'
-import adminFeedbackPaths from './adminFeedback-paths'
+import categoryPaths from "./category-paths";
+import complaintPaths from "./complaint-paths";
+import adminFeedbackPaths from "./adminFeedback-paths";
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.3",
   info: {
@@ -10,7 +10,7 @@ const swaggerDefinition: OAS3Definition = {
     description: "Description here!",
     version: "1.0.0",
   },
-  servers: [{ url: "http://localhost:3000/api" }],
+  servers: [{ url: "http://localhost:3030/api" }],
   components: {
     securitySchemes: {
       bearerAuth: {
@@ -25,7 +25,10 @@ const swaggerDefinition: OAS3Definition = {
         properties: {
           code: { type: "number", example: 422 },
           status: { type: "string", example: "Unprocessable Entity" },
-          errors: { type: "string", example: "Password does not meet the required criteria." },
+          errors: {
+            type: "string",
+            example: "Password does not meet the required criteria.",
+          },
         },
       },
       User: {
@@ -42,7 +45,7 @@ const swaggerDefinition: OAS3Definition = {
       {
         bearerAuth: [],
       },
-    ]
+    ],
   },
   paths: {
     ...userPaths,
